@@ -1,0 +1,6 @@
+@PayLedger.Api_HostAddress = http://localhost:5010
+
+GET {{PayLedger.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
