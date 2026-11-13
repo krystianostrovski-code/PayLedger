@@ -4,9 +4,7 @@ import {
   faScaleBalanced,
   faBuildingColumns,
   faReceipt,
-  faArrowRightArrowLeft,
-  faShieldHalved,
-  faCircleCheck
+  faArrowRightArrowLeft
 } from './icons';
 import type { LedgerIntegrityReport } from '../types';
 
@@ -27,13 +25,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="bg-[#121316] border-b border-[#262830] px-4 py-2.5 flex items-center justify-between font-mono select-none">
       {/* Brand */}
       <div className="flex items-center space-x-3">
-        <div className="w-8 h-8 rounded-sm bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-sm shadow-[0_0_12px_rgba(16,185,129,0.2)]">
+        <div className="w-8 h-8 rounded-sm bg-[#1a1c23] text-emerald-400 flex items-center justify-center text-sm shadow-sm">
           <FontAwesomeIcon icon={faScaleBalanced} />
         </div>
         <div>
           <div className="flex items-center space-x-2">
             <span className="font-bold text-sm tracking-wider text-white">PAYLEDGER</span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded-sm bg-[#1e2027] text-zinc-400 border border-[#2e313b] font-bold">
+            <span className="text-[9px] px-1.5 py-0.5 rounded-sm bg-[#1a1c22] text-zinc-400 font-bold">
               CORE v1.0
             </span>
           </div>
@@ -43,8 +41,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Navigation Tabs */}
-      <nav className="hidden md:flex items-center space-x-1">
+      {/* Navigation Tabs - Clean, borderless industrial pill buttons */}
+      <nav className="hidden md:flex items-center bg-[#0b0c0e] p-1 rounded-sm space-x-1">
         {[
           { id: 'terminal', label: 'TERMINAL', icon: faScaleBalanced },
           { id: 'accounts', label: 'KONTA I WALLETY', icon: faBuildingColumns },
@@ -56,24 +54,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id as any)}
-              className={`flex items-center space-x-2 px-3.5 py-1.5 text-xs font-bold transition rounded-sm cursor-pointer ${
+              className={`flex items-center space-x-2 px-3.5 py-1.5 text-xs font-bold transition rounded-sm cursor-pointer border-0 ${
                 isActive
-                  ? 'bg-emerald-950/30 text-emerald-400 border border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.15)]'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#1a1c23] border border-transparent'
+                  ? 'bg-[#22242b] text-white shadow-sm'
+                  : 'text-zinc-400 hover:text-white hover:bg-[#16171d]'
               }`}
             >
-              <FontAwesomeIcon icon={tab.icon} className="text-[11px]" />
+              <FontAwesomeIcon
+                icon={tab.icon}
+                className={`text-[11px] ${isActive ? 'text-emerald-400' : 'text-zinc-500'}`}
+              />
               <span>{tab.label}</span>
             </button>
           );
         })}
       </nav>
 
-      {/* Right Side: Ledger Integrity Status */}
+      {/* Right Side: Ledger Integrity Status (Borderless clean pill) */}
       <div className="flex items-center space-x-3">
         <div
           onClick={onRefresh}
-          className="flex items-center space-x-2 px-2.5 py-1 rounded-sm bg-[#16181e] border border-[#262830] text-[10px] cursor-pointer hover:border-zinc-600 transition"
+          className="flex items-center space-x-2 px-3 py-1.5 rounded-sm bg-[#16181e] text-[10px] cursor-pointer hover:bg-[#1d1f27] transition"
           title="Kliknij, aby odświeżyć audyt księgowy"
         >
           <span className="relative flex h-2 w-2">

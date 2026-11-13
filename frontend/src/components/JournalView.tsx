@@ -52,18 +52,27 @@ export const JournalView: React.FC<JournalViewProps> = ({
           </h2>
         </div>
 
-        <select
-          value={filterType}
-          onChange={e => setFilterType(e.target.value)}
-          className="bg-[#181920] border border-[#262830] px-2.5 py-1.5 rounded-sm text-xs text-zinc-300"
-        >
-          <option value="ALL">Wszystkie rodzaje transakcji</option>
-          <option value="Transfer">Transfery B2B</option>
-          <option value="Deposit">Wpłaty / Doładowania</option>
-          <option value="CurrencyExchange">Wymiana Walut (FX)</option>
-          <option value="StornoReversal">Korekty Storno</option>
-          <option value="FeeCharge">Opłaty manipulacyjne</option>
-        </select>
+        <div className="flex flex-wrap items-center gap-1.5">
+          {[
+            { id: 'ALL', label: 'Wszystkie' },
+            { id: 'Transfer', label: 'Transfery B2B' },
+            { id: 'Deposit', label: 'Wpłaty' },
+            { id: 'CurrencyExchange', label: 'Wymiana FX' },
+            { id: 'StornoReversal', label: 'Korekty Storno' }
+          ].map(f => (
+            <button
+              key={f.id}
+              onClick={() => setFilterType(f.id)}
+              className={`px-2.5 py-1 rounded-sm text-[10px] font-bold transition cursor-pointer border-0 ${
+                filterType === f.id
+                  ? 'bg-[#22242b] text-white shadow-sm'
+                  : 'text-zinc-400 hover:text-white bg-[#181920]'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Transactions Table */}
@@ -205,3 +214,4 @@ export const JournalView: React.FC<JournalViewProps> = ({
     </div>
   );
 };
+

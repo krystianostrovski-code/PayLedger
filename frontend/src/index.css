@@ -32,7 +32,12 @@
   }
 }
 
-/* Custom crisp dark scrollbar */
+/* Modern minimalist dark scrollbar with emerald hover */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #272932 #0b0c0e;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -41,9 +46,9 @@
   background: #0b0c0e;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262830;
+  background: #272932;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #10b981;
 }

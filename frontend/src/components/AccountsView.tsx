@@ -58,29 +58,42 @@ export const AccountsView: React.FC<AccountsViewProps> = ({
             />
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex items-center space-x-2">
-            <select
-              value={typeFilter}
-              onChange={e => setTypeFilter(e.target.value)}
-              className="bg-[#181920] border border-[#262830] px-2.5 py-1.5 rounded-sm text-xs text-zinc-300"
-            >
-              <option value="ALL">Wszystkie typy</option>
-              <option value="Asset">Aktywa (Portfele B2B)</option>
-              <option value="Liability">Pasywa / Rozliczenia</option>
-              <option value="Revenue">Przychody (Prowizje)</option>
-            </select>
+          {/* Filter Pills without native select */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            {[
+              { id: 'ALL', label: 'Wszystkie typy' },
+              { id: 'Asset', label: 'Aktywa (B2B)' },
+              { id: 'Liability', label: 'Pasywa' },
+              { id: 'Revenue', label: 'Przychody' }
+            ].map(t => (
+              <button
+                key={t.id}
+                onClick={() => setTypeFilter(t.id)}
+                className={`px-2.5 py-1 rounded-sm text-[10px] font-bold transition cursor-pointer border-0 ${
+                  typeFilter === t.id
+                    ? 'bg-[#22242b] text-white shadow-sm'
+                    : 'text-zinc-400 hover:text-white bg-[#181920]'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
 
-            <select
-              value={currencyFilter}
-              onChange={e => setCurrencyFilter(e.target.value)}
-              className="bg-[#181920] border border-[#262830] px-2.5 py-1.5 rounded-sm text-xs text-zinc-300"
-            >
-              <option value="ALL">Wszystkie waluty</option>
-              <option value="PLN">PLN</option>
-              <option value="EUR">EUR</option>
-              <option value="USD">USD</option>
-            </select>
+            <div className="h-4 w-px bg-[#262830] mx-1 hidden sm:block" />
+
+            {['ALL', 'PLN', 'EUR', 'USD'].map(c => (
+              <button
+                key={c}
+                onClick={() => setCurrencyFilter(c)}
+                className={`px-2 py-1 rounded-sm text-[10px] font-bold transition cursor-pointer border-0 ${
+                  currencyFilter === c
+                    ? 'bg-emerald-950/60 text-emerald-400 shadow-sm'
+                    : 'text-zinc-400 hover:text-white bg-[#181920]'
+                }`}
+              >
+                {c === 'ALL' ? 'Wszystkie waluty' : c}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -215,3 +228,4 @@ export const AccountsView: React.FC<AccountsViewProps> = ({
     </div>
   );
 };
+

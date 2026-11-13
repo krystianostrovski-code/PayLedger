@@ -70,3 +70,4 @@ export interface LedgerIntegrityReport {
   totalCreditSumPln: number;
   discrepancies: string[];
 }
+
